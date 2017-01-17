@@ -83,15 +83,74 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var AcmeDB = function AcmeDB(_ref) {
-	    var users = _ref.users;
+	var AcmeDB = function () {
+	    function AcmeDB(_ref) {
+	        var users = _ref.users;
 
-	    _classCallCheck(this, AcmeDB);
+	        _classCallCheck(this, AcmeDB);
 
-	    this.users = users;
-	};
+	        this.users = users;
+	        this.users[0].id = 1;
+	    }
+
+	    _createClass(AcmeDB, [{
+	        key: "addUser",
+	        value: function addUser(name) {
+	            // var maxId;
+	            //maxId = this.users[this.users.length-1].id;
+	            this.users.push(name);
+	            //this.users[this.users.length-1]=maxId +1;
+	        }
+	    }, {
+	        key: "showUsers",
+	        value: function showUsers() {
+	            var userList = [];
+	            this.users.forEach(function (user) {
+	                userList.push(user.name);
+	            });
+	            return userList.join();
+	        }
+	    }, {
+	        key: "findById",
+	        value: function findById(id) {
+	            var target;
+	            this.users.forEach(function (user) {
+	                if (user.id === id) {
+	                    target = user;
+	                }
+	                return target;
+	            });
+	        }
+	    }, {
+	        key: "removeUserById",
+	        value: function removeUserById() {
+	            var remove = 0;
+	            this.users.forEach(function (user, index) {
+	                if (id === user.id) {
+	                    remove = index;
+	                }
+	            });
+	            this.users.splice(remove, 1);
+	        }
+	    }, {
+	        key: "editUser",
+	        value: function editUser(obj) {
+	            var swap = 0;
+	            this.users.forEach(function (user, index) {
+	                if (obj.id === user.id) {
+	                    swap = index;
+	                }
+	            });
+	            this.users[swap] = obj;
+	        }
+	    }]);
+
+	    return AcmeDB;
+	}();
 
 	console.log("hello");
 	exports.default = AcmeDB;
